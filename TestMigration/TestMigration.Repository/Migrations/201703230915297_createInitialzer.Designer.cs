@@ -7,13 +7,13 @@ namespace TestMigration.Repository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class createInitialzer : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(createInitialzer));
         
         string IMigrationMetadata.Id
         {
-            get { return "201703191125213_InitialCreate"; }
+            get { return "201703230915297_createInitialzer"; }
         }
         
         string IMigrationMetadata.Source

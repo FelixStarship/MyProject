@@ -5,14 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TestMigration.Domain.core
-{  
+{   
     /// <summary>
-    /// 角色表
+    /// 分类表
     /// </summary>
-   public class Role:Entity
+    public class Category:Entity
     {   
         /// <summary>
-        /// 角色名称
+        /// 节点语义ID
+        /// </summary>
+        public string CascadeId { get; set; }
+
+        /// <summary>
+        /// 名称
         /// </summary>
         public string Name { get; set; }
         /// <summary>
@@ -20,16 +25,20 @@ namespace TestMigration.Domain.core
         /// </summary>
         public int Status { get; set; }
         /// <summary>
-        /// 角色类型
+        /// 排序号
         /// </summary>
-        public int Type { get; set; }
+        public int SortNo { get; set; }
         /// <summary>
-        /// 创建时间
+        /// 分类所属科目
         /// </summary>
-        public DateTime CreateTime { get; set; }
+        public string RootKey { get; set; }
         /// <summary>
-        /// 创建人ID
+        /// 分类所属科目名称
         /// </summary>
-        public string CreateId { get; set; }
+        public string RootName { get; set; }
+        /// <summary>
+        /// 父节点流水号
+        /// </summary>
+        public System.Guid ParentId { get; set; }
     }
 }

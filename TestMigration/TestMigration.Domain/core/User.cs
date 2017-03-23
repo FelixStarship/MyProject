@@ -5,7 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TestMigration.Domain.core
-{
+{  
+
+    /// <summary>
+    /// 用户表
+    /// </summary>
    public class User:Entity
     {   
         /// <summary>

@@ -54,11 +54,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRepository.cs" />
+    <Compile Include="Mapping\ModuleElementMap.cs" />
+    <Compile Include="Mapping\ModuleMap.cs" />
     <Compile Include="Mapping\RoleMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />
-    <Compile Include="Migrations\201703191125213_InitialCreate.cs" />
-    <Compile Include="Migrations\201703191125213_InitialCreate.Designer.cs">
-      <DependentUpon>201703191125213_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201703230915297_createInitialzer.cs" />
+    <Compile Include="Migrations\201703230915297_createInitialzer.Designer.cs">
+      <DependentUpon>201703230915297_createInitialzer.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,8 +81,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703191125213_InitialCreate.resx">
-      <DependentUpon>201703191125213_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703230915297_createInitialzer.resx">
+      <DependentUpon>201703230915297_createInitialzer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

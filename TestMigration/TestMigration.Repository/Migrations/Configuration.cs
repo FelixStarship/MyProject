@@ -14,17 +14,18 @@ namespace TestMigration.Repository.Migrations
 
         protected override void Seed(TestMigration.Repository.TestMigrationContext context)
         {
+            //  This method will be called after migrating to the latest version.
 
-
-
-            //初始化标示种子
-            context.Database.ExecuteSqlCommand(@"DBCC CHECKIDENT ('[dbo].[User]', RESEED, 100000);");
-            context.Database.ExecuteSqlCommand(@"insert into [dbo].[User] values('1','1','1',1,1,1,'1','2017-03-19','00000000000000',0)");
-
-
-
-            
-
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
         }
     }
 }

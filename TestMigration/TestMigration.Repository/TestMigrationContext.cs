@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestMigration.Repository.Mapping;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace TestMigration.Repository
 {
@@ -42,8 +43,11 @@ namespace TestMigration.Repository
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new UserMap());
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();   //剔除表名默认的复数形式
+            modelBuilder.Configurations.Add(new UserMap());   //添加Fluent API配置
             modelBuilder.Configurations.Add(new RoleMap());
+            modelBuilder.Configurations.Add(new ModuleMap());
+            modelBuilder.Configurations.Add(new ModuleElementMap());
         }
     }
 }

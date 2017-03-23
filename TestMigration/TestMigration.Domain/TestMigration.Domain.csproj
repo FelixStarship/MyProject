@@ -40,8 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="core\Category.cs" />
     <Compile Include="core\Entity.cs" />
+    <Compile Include="core\Module.cs" />
+    <Compile Include="core\ModuleElement.cs" />
     <Compile Include="core\Role.cs" />
+    <Compile Include="core\Stock.cs" />
     <Compile Include="core\User.cs" />
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

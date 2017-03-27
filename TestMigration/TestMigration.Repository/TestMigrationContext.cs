@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TestMigration.Repository.Mapping;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using TestMigration.Domain.Interface;
+using System.Data.Entity.Infrastructure;
 
 namespace TestMigration.Repository
 {
@@ -24,7 +26,7 @@ namespace TestMigration.Repository
     策略四：从不创建数据库
     Database.SetInitializer<testContext>(null);
     */
-    public class TestMigrationContext:DbContext
+    public class TestMigrationContext:DbContext,IDbContext
     {
         static TestMigrationContext()
         {
@@ -48,6 +50,17 @@ namespace TestMigration.Repository
             modelBuilder.Configurations.Add(new RoleMap());
             modelBuilder.Configurations.Add(new ModuleMap());
             modelBuilder.Configurations.Add(new ModuleElementMap());
+            base.OnModelCreating(modelBuilder);
+        }
+
+        DbEntityEntry<TEntity> IDbContext.Entry<TEntity>(TEntity entity)
+        {
+            return base.Entry<TEntity>(entity);
+        }
+
+        public new IDbSet<TEntity> Set<TEntity>() where TEntity : class
+        {
+            return base.Set<TEntity>();
         }
     }
 }

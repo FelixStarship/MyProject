@@ -5,16 +5,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TestMigration.Repository;
+using TestMigration.Domain.Interface;
+
 namespace TestMigration.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUserRepository _userRepository;
+        public HomeController(IUserRepository userRepository)
+        {
+            this._userRepository = userRepository;
+        }
         public ActionResult Index()
         {
-            using (TestMigrationContext context = new TestMigrationContext())
-            {
-                //context.Database.Initialize(true);
-            }
+            this._userRepository.LoadUsers(1,2);
+            this._userRepository.LoadInOrgs(System.Guid.NewGuid());
             return View();
         }
 

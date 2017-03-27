@@ -3,7 +3,7 @@ namespace TestMigration.Repository.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class createInitialzer : DbMigration
+    public partial class CreateInitialzer : DbMigration
     {
         public override void Up()
         {

@@ -13,11 +13,28 @@ using EntityFramework;
 using System.Data.Entity.Migrations;
 using EntityFramework.Extensions;
 
+
 namespace TestMigration.Repository
 {
     public class BaseRepository<T>:IRepository<T> where T:Entity
     {
-        protected TestMigrationContext Context = new TestMigrationContext();
+        // protected TestMigrationContext Context = new TestMigrationContext();
+        private readonly IDbContext _context;    //暂时公开
+        private IDbSet<T> _entities;
+        public BaseRepository(IDbContext context)
+        {
+            this._context = context;
+        }
+
+        protected virtual IDbSet<T> Entities
+        {
+            get
+            {
+                if (_entities == null)
+                    _entities = _context.Set<T>();
+                return _entities;
+            }
+        }
         /// <summary>
         /// 根据过滤条件，获取记录
         /// </summary>
@@ -29,7 +46,7 @@ namespace TestMigration.Repository
 
         public bool IsExist(Expression<Func<T, bool>> exp)
         {
-            return Context.Set<T>().Any(exp);
+            return _context.Set<T>().Any(exp);
         }
 
         /// <summary>
@@ -37,7 +54,7 @@ namespace TestMigration.Repository
         /// </summary>
         public T FindSingle(Expression<Func<T, bool>> exp)
         {
-            return Context.Set<T>().AsNoTracking().FirstOrDefault(exp);
+            return _context.Set<T>().AsNoTracking().FirstOrDefault(exp);
         }
 
         /// <summary>
@@ -65,8 +82,8 @@ namespace TestMigration.Repository
 
         public void Add(T entity)
         {
-            
-            Context.Set<T>().Add(entity);
+
+            _context.Set<T>().Add(entity);
             Save();
         }
 
@@ -76,13 +93,27 @@ namespace TestMigration.Repository
         /// <param name="entities">The entities.</param>
         public void BatchAdd(T[] entities)
         {
-            Context.Set<T>().AddRange(entities);
-            Save();
+            try
+            {
+                if (entities == null)
+                    throw new ArgumentNullException("entities");
+                foreach (var entity in entities)
+                {
+                    if (entity == null)
+                        throw new ArgumentNullException("entity");
+                    _context.Set<T>().Add(entity);
+                    Save();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void Update(T entity)
         {
-            var entry = this.Context.Entry(entity);
+            var entry = this._context.Entry(entity);
             //todo:如果状态没有任何更改，会报错
             entry.State = EntityState.Modified;
 
@@ -91,7 +122,7 @@ namespace TestMigration.Repository
 
         public void Delete(T entity)
         {
-            Context.Set<T>().Remove(entity);
+            _context.Set<T>().Remove(entity);
             Save();
         }
 
@@ -102,7 +133,7 @@ namespace TestMigration.Repository
         /// <param name="entity">The entity.</param>
         public void Update(Expression<Func<T, object>> identityExp, T entity)
         {
-            Context.Set<T>().AddOrUpdate(identityExp, entity);
+            _context.Set<T>().AddOrUpdate(identityExp, entity);
             Save();
         }
 
@@ -114,19 +145,19 @@ namespace TestMigration.Repository
         /// <param name="entity">The entity.</param>
         public void Update(Expression<Func<T, bool>> where, Expression<Func<T, T>> entity)
         {
-            Context.Set<T>().Where(where).Update(entity);
+            _context.Set<T>().Where(where).Update(entity);
         }
 
         public virtual void Delete(Expression<Func<T, bool>> exp)
         {
-            Context.Set<T>().Where(exp).Delete();
+            _context.Set<T>().Where(exp).Delete();
         }
 
         public void Save()
         {
             try
             {
-                Context.SaveChanges();
+                _context.SaveChanges();
             }
             catch (DbEntityValidationException e)
             {
@@ -136,7 +167,7 @@ namespace TestMigration.Repository
 
         private IQueryable<T> Filter(Expression<Func<T, bool>> exp)
         {
-            var dbSet = Context.Set<T>().AsQueryable();
+            var dbSet = _context.Set<T>().AsQueryable();
             if (exp != null)
                 dbSet = dbSet.Where(exp);
             return dbSet;

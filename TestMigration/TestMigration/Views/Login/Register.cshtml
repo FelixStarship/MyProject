@@ -1,0 +1,67 @@
+﻿@model TestMigration.Models.RegisterViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>注册</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+      <div class="form-group">
+           <div class="col-xs-3 control-label grey">用户登录账号</div>
+           <div class="col-xs-3">
+              @Html.TextBoxFor(t => t.Account, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+              @Html.ValidationMessageFor(t=>t.Account)
+           </div>
+        </div>
+     <div class="form-group">
+        <div class="col-xs-3 control-label grey">密码</div>
+        <div class="col-xs-3">
+            @Html.PasswordFor(t => t.Password, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.ValidationMessageFor(t=>t.Password)
+        </div>
+     </div>
+     <div class="form-group">
+        <div class="col-xs-3 control-label grey">确认密码</div>
+        <div class="col-xs-3">
+            @Html.PasswordFor(t => t.SurePassword, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.ValidationMessageFor(t=>t.SurePassword)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">用户姓名</div>
+        <div class="col-xs-3">
+            @Html.TextBoxFor(t => t.Name, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.ValidationMessageFor(t=>t.Name)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">用户姓别</div>
+        <div class="col-xs-3">
+            <label class="radio-inline">
+                @Html.RadioButtonFor(t => t.Sex, true, new { @checked = "checked" }) 男
+            </label>
+            <label class="radio-inline">
+                @Html.RadioButtonFor(t=>t.Sex,false) 女
+            </label>
+            @Html.ValidationMessageFor(t=>t.Sex)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey"></div>
+        <div class="col-xs-3">
+           <input type="submit" class="btn btn-warning col-xs-12" value="注册" />
+        </div>
+    </div>
+    }
+</body>
+</html>

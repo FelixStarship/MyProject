@@ -18,9 +18,9 @@ namespace TestMigration.Domain.Interface
 
         int GetCount(Expression<Func<T, bool>> exp = null);
 
-        void Add(T entity);
+        bool Add(T entity);
 
-        void BatchAdd(T[] entities);
+        bool BatchAdd(T[] entities);
 
         /// <summary>
         /// 更新一个实体的所有属性
@@ -46,6 +46,6 @@ namespace TestMigration.Domain.Interface
         /// </summary>
         void Delete(Expression<Func<T, bool>> exp);
 
-        void Save();
+        bool Save();
     }
 }

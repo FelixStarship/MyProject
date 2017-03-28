@@ -27,11 +27,11 @@ namespace TestMigration.Domain.core
         /// <summary>
         /// 用户性别
         /// </summary>
-        public int Sex { get; set; }
+        public bool Sex { get; set; }
         /// <summary>
         /// 用户状态
         /// </summary>
-        public int Status { get; set; }
+        public bool Status { get; set; }
         /// <summary>
         /// 用户类型
         /// </summary>
@@ -49,6 +49,6 @@ namespace TestMigration.Domain.core
         /// </summary>
         public Guid? CrateId { get; set; } 
 
-        
+        public string Null { get; set; }
     }
 }

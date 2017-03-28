@@ -10,35 +10,39 @@ namespace TestMigration.Domain.core
     /// 分类表
     /// </summary>
     public class Category:Entity
-    {   
+    {
         /// <summary>
-        /// 节点语义ID
-        /// </summary>
-        public string CascadeId { get; set; }
-
-        /// <summary>
-        /// 名称
+        /// 品类名称
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// 当前状态
+        /// 排序
         /// </summary>
-        public int Status { get; set; }
+        public int OrderSort { get; set; }
         /// <summary>
-        /// 排序号
+        /// 品类代码
         /// </summary>
-        public int SortNo { get; set; }
+        public string Code { get; set; }
         /// <summary>
-        /// 分类所属科目
+        /// 品类描述
         /// </summary>
-        public string RootKey { get; set; }
+        public string Description { get; set; }
         /// <summary>
-        /// 分类所属科目名称
+        /// 品类图标Url
         /// </summary>
-        public string RootName { get; set; }
+        public string IconUrl { get; set; }
         /// <summary>
-        /// 父节点流水号
+        /// 是否显示
         /// </summary>
-        public System.Guid ParentId { get; set; }
+        public bool IsDisplay { get; set; }
+        /// <summary>
+        /// 是否启用
+        /// </summary>
+        public bool IsEnabled { get; set; }
+
+        /// <summary>
+        /// 父级类别主键
+        /// </summary>
+        public int ParentId { get; set; }
     }
 }

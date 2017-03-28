@@ -1,0 +1,66 @@
+﻿@model TestMigration.Models.LoginViewModel
+@{
+   Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>登录</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            <div class="container-fluid">
+                <div class="panel panel-primary">
+                    
+                        <div class="form-group">
+                            <div class="col-xs-3 control-label grey">
+                                账号
+                            </div>
+                            <div class="col-xs-8">
+                                @Html.TextBoxFor(t => t.Account, new { @class = "form-control", @placeholder = "请输入用户名", @error = "red", autocomplete = "off" })
+                                @Html.ValidationMessageFor(t => t.Account, "", new { @class = "Red" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-3 control-label grey">
+                                密码
+                            </div>
+                            <div class="col-xs-8">
+                                @Html.PasswordFor(t => t.Password, new { @class = "form-control", @placeholder = "请输入用户名", autocomplete = "off" })
+                                @Html.ValidationMessageFor(t => t.Password, "", new { @class = "red" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-5 col-xs-offset-3">
+                                <label class="checkbox-inline small" style="padding-top:0">
+                                    
+                                </label>
+                            </div>
+                            <div class="form-group"><a href="@Url.Action("Register","Login")">注册</a></div>
+                        </div>
+                        <div class="col-xs-offset-3 col-xs-8 pd-right">
+                            <input type="submit" value="登录" class="btn btn-warning col-xs-12" />
+                        </div>
+                    </div>
+                </div>
+                }
+</body>
+</html>
+
+<script type="text/javascript">
+    //$(document).ready(function () {
+    //    $.ajax({
+    //        type: "POST",
+    //         url:
+    //    });
+    //});
+</script>
+
+

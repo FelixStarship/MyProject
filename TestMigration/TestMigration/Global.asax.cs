@@ -22,10 +22,10 @@ namespace TestMigration
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            using (TestMigrationContext context = new TestMigrationContext())
-            {
-                //context.Database.Initialize(true);
-            }
+            //using (TestMigrationContext context = new TestMigrationContext())
+            //{
+            //    //context.Database.Initialize(true);
+            //}
 
         }
     }

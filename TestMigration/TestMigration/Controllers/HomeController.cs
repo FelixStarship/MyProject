@@ -16,10 +16,12 @@ namespace TestMigration.Controllers
         {
             this._userRepository = userRepository;
         }
+
+
         public ActionResult Index()
         {
-            this._userRepository.LoadUsers(1,2);
-            this._userRepository.LoadInOrgs(System.Guid.NewGuid());
+            //this._userRepository.LoadUsers(1,2);
+            //this._userRepository.LoadInOrgs(System.Guid.NewGuid());
             return View();
         }
 
@@ -37,4 +39,45 @@ namespace TestMigration.Controllers
             return View();
         }
     }
+
+    /// <summary>
+    /// 类别
+    /// </summary>
+    public class Category
+    {
+        /// <summary>
+        /// 品类名称
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public int OrderSort { get; set; }
+        /// <summary>
+        /// 品类代码
+        /// </summary>
+        public string Code { get; set; }
+        /// <summary>
+        /// 品类描述
+        /// </summary>
+        public string Description { get; set; }
+        /// <summary>
+        /// 品类图标Url
+        /// </summary>
+        public string IconUrl { get; set; }
+        /// <summary>
+        /// 是否显示
+        /// </summary>
+        public bool IsDisplay { get; set; }
+        /// <summary>
+        /// 是否启用
+        /// </summary>
+        public bool IsEnabled { get; set; }
+
+        /// <summary>
+        /// 父级类别主键
+        /// </summary>
+        public int ParentId { get; set; }
+    }
+
 }

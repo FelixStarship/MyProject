@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TestMigration.Domain;
 using TestMigration.Domain.core;
 using TestMigration.Domain.Interface;
+using System.Linq.Expressions;
 
 namespace TestMigration.Repository
 {
@@ -32,6 +33,16 @@ namespace TestMigration.Repository
         public int GetUserCntInOrgs(params Guid[] orgId)
         {
             return this._userRepository.GetCount(t => t.CrateId == orgId[0]);
+        }
+
+        public User FindUser(Expression<Func<User, bool>> exp)
+        {
+           return this._userRepository.FindSingle(exp);
+        }
+
+        public bool AddUser(User user)
+        {
+            return this._userRepository.Add(user);
         }
     }
 }

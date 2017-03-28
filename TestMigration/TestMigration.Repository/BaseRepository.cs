@@ -19,7 +19,7 @@ namespace TestMigration.Repository
     public class BaseRepository<T>:IRepository<T> where T:Entity
     {
         // protected TestMigrationContext Context = new TestMigrationContext();
-        private readonly IDbContext _context;    //暂时公开
+        private readonly IDbContext _context;    
         private IDbSet<T> _entities;
         public BaseRepository(IDbContext context)
         {
@@ -80,18 +80,18 @@ namespace TestMigration.Repository
             return Filter(exp).Count();
         }
 
-        public void Add(T entity)
+        public bool Add(T entity)
         {
 
             _context.Set<T>().Add(entity);
-            Save();
+            return Save();
         }
 
         /// <summary>
         /// 批量添加
         /// </summary>
         /// <param name="entities">The entities.</param>
-        public void BatchAdd(T[] entities)
+        public bool BatchAdd(T[] entities)
         {
             try
             {
@@ -102,13 +102,14 @@ namespace TestMigration.Repository
                     if (entity == null)
                         throw new ArgumentNullException("entity");
                     _context.Set<T>().Add(entity);
-                    Save();
+                    return Save();
                 }
             }
             catch (Exception)
             {
                 throw;
             }
+            return false;
         }
 
         public void Update(T entity)
@@ -153,11 +154,11 @@ namespace TestMigration.Repository
             _context.Set<T>().Where(exp).Delete();
         }
 
-        public void Save()
+        public bool Save()
         {
             try
             {
-                _context.SaveChanges();
+                return _context.SaveChanges()>0;
             }
             catch (DbEntityValidationException e)
             {

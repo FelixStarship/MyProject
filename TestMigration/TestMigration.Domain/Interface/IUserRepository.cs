@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestMigration.Domain.core;
+using System.Linq.Expressions;
 
 namespace TestMigration.Domain.Interface
 {
@@ -14,5 +15,9 @@ namespace TestMigration.Domain.Interface
         IEnumerable<User> LoadInOrgs(params Guid [] orgId);
 
         int GetUserCntInOrgs(params Guid [] orgId);
+
+        User FindUser(Expression<Func<User, bool>> exp);
+
+        bool AddUser(User user);
     }
 }

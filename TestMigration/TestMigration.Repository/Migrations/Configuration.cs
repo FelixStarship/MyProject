@@ -9,7 +9,8 @@ namespace TestMigration.Repository.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(TestMigration.Repository.TestMigrationContext context)

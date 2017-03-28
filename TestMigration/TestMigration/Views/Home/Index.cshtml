@@ -43,12 +43,15 @@
 
     var setting = {
         view: {
-            selectedMulti: false
+            selectedMulti: false,
+            addHoverDom: addHoverDom,
+            removeHoverDom: removeHoverDom //离开节点时的操作
         },
         edit: {
-            enable: true,
-            showRemoveBtn: remove,
-            showRenameBtn: false
+            //enable: true,
+            //editNameSelectAll:true,
+            //showRemoveBtn: showRemoveBtn,
+            //showRenameBtn: showRenameBtn  
         },
         data: {
             keep: {
@@ -60,18 +63,60 @@
             }
         },
         callback: {
-            beforeRemove: beforeRemove,
-            onRemove: onRemove,
-            beforeClick: beforeClick,
-            onClick: onClick
+            //beforeRemove: beforeRemove,
+            //onRemove: onRemove,
+            //beforeClick: beforeClick,
+            //onClick: onClick,
         }
     };
 
+    function addHoverDom(treeId, treeNode) {
+        var sObj = $("#" + treeNode.tId + "_span"); //获取节点信息  
+        if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0) return;
 
+        var addStr = "<span class='button add' id='addBtn_" + treeNode.tId + "' title='add node' onfocus='this.blur();'></span>"; //定义添加按钮  
+        sObj.after(addStr); //加载添加按钮  
+        var btn = $("#addBtn_" + treeNode.tId);
 
+        //绑定添加事件，并定义添加操作  
+        if (btn) btn.bind("click", function () {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo_1_a");
+            //将新节点添加到数据库中  
+            var name = 'NewNode';
+            $.post('/home/addtree?pid=' + treeNode.id + '&name=' + name, function (data) {
+                
+                var newID = data; //获取新添加的节点Id
+                var newNodes = [{ name: "newNode1" }, { name: "newNode2" }, { name: "newNode3" }];
+                zTree.addNodes(treeNode, newNodes); //页面上添加节点  
+                var node = zTree.getNodeByParam("id", newID, null); //根据新的id找到新添加的节点  
+                zTree.selectNode(node); //让新添加的节点处于选中状态  
+            });
+        });
+    };
+    function removeHoverDom(treeId, treeNode) {
+        $("#addBtn_" + treeNode.tId).unbind().remove();
+    };
 
+    //function remove(treeId, treeNode)
+    //{
+        
+    //}
+    //function beforeRemove(treeId, treeNode)
+    //{
+        
+    //}
+    //function onRemove(treeId,treeNode)
+    //{
 
+    //}
+    //function beforeClick(treeId, treeNode)
+    //{
 
+    //}
+    //function onClick(treeId, treeNode)
+    //{
+        
+    //}
 
     function setzNodes(data) {
         var zNodes = [];
@@ -89,7 +134,7 @@
     }
 
     function reloadtree() {
-        doAjaxRequest({ url: "@Url.Action("GetCategories", "Category")", callback: setzNodes });
+        doAjaxRequest({ url: "@Url.Action("GetCategories", "Home")", callback: setzNodes });
     }
 
 
@@ -120,7 +165,7 @@
 
     $(function ()
     {
-        doAjaxRequest({ url: "@Url.Action("GetCategories", "Category")", callback: setzNodes });
+        doAjaxRequest({ url: "@Url.Action("GetCategories", "Home")", callback: setzNodes });
     })
 
 

@@ -59,14 +59,14 @@ namespace TestMigration.Controllers
             return View();
         }
 
-        public ActionResult ModelElement()
+        public ActionResult ModuleElement()
         {
             return View();
         }
 
 
         [HttpPost]
-        public async Task<ActionResult> ModelElement(ModuleViewModel model)
+        public async Task<ActionResult> ModuleElement(ModuleViewModel model)
         {
             var module = new Module
             {

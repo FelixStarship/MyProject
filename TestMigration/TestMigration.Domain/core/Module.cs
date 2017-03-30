@@ -59,7 +59,7 @@ namespace TestMigration.Domain.core
         /// <summary>
         /// 父节点流水号
         /// </summary>
-        public int ParentId { get; set; }
+        public string ParentId { get; set; }
         /// <summary>
         /// 模块元素表（需要权限控制的按钮）
         /// </summary>

@@ -198,6 +198,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\ModuleElementViewModel.cs" />
     <Compile Include="Models\ModuleViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -276,6 +277,7 @@
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\ModuleElement.cshtml" />
+    <Content Include="Views\Home\Module.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

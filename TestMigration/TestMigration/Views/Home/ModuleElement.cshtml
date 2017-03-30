@@ -1,11 +1,12 @@
-﻿@using TestMigration.Models.ModuleViewModel
+﻿@model TestMigration.Models.ModuleViewModel
 @{
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>添加模块元素</h2>
 
-@using (Html.BeginForm("ModelElement", "Home",FormMethod.Post))
+@using (Html.BeginForm("ModuleElement", "Home",FormMethod.Post))
 {
     <div class="form-group">
         <div class="col-xs-3 control-label grey">节点ID</div>
@@ -24,7 +25,7 @@
     <div class="form-group">
         <div class="col-xs-3 control-label grey">主页URL</div>
         <div class="col-xs-3">
-            @Html.PasswordFor(t => t.Url, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.TextBoxFor(t => t.Url, new { @class = "form-control", placeholder = "", autocomplete = "off" })
             @Html.ValidationMessageFor(t => t.Url)
         </div>
     </div>
@@ -39,10 +40,10 @@
         <div class="col-xs-3 control-label grey">是否叶节点</div>
         <div class="col-xs-3">
             <label class="radio-inline">
-                @Html.RadioButtonFor(t => t.IsLeaf, true, new { @checked = "checked" }) 男
+                @Html.RadioButtonFor(t => t.IsLeaf, true, new { @checked = "checked" }) 是
             </label>
             <label class="radio-inline">
-                @Html.RadioButtonFor(t => t.IsLeaf, false) 女
+                @Html.RadioButtonFor(t => t.IsLeaf, false) 否
             </label>
             @Html.ValidationMessageFor(t => t.IsLeaf)
         </div>
@@ -51,10 +52,10 @@
         <div class="col-xs-3 control-label grey">是否自动展开</div>
         <div class="col-xs-3">
             <label class="radio-inline">
-                @Html.RadioButtonFor(t => t.IsAutoExpand, true, new { @checked = "checked" }) 男
+                @Html.RadioButtonFor(t => t.IsAutoExpand, true, new { @checked = "checked" }) 是
             </label>
             <label class="radio-inline">
-                @Html.RadioButtonFor(t => t.IsAutoExpand, false) 女
+                @Html.RadioButtonFor(t => t.IsAutoExpand, false) 否
             </label>
             @Html.ValidationMessageFor(t => t.IsAutoExpand)
         </div>

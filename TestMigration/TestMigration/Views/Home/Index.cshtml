@@ -66,11 +66,7 @@
             onClick: onClick
         }
     };
-
-
-
-
-
+    
 
 
     function setzNodes(data) {
@@ -89,13 +85,9 @@
     }
 
     function reloadtree() {
-        doAjaxRequest({ url: "@Url.Action("GetCategories", "Category")", callback: setzNodes });
+        doAjaxRequest({ url: "@Url.Action("GetCategories", "Home")", callback: setzNodes });
     }
-
-
-
-
-
+    
 
 
     function doAjaxRequest(opt) {
@@ -120,7 +112,7 @@
 
     $(function ()
     {
-        doAjaxRequest({ url: "@Url.Action("GetCategories", "Category")", callback: setzNodes });
+        doAjaxRequest({ url: "@Url.Action("GetCategories", "Home")", callback: setzNodes });
     })
 
 

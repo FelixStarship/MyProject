@@ -6,22 +6,52 @@ using System.Web;
 using System.Web.Mvc;
 using TestMigration.Repository;
 using TestMigration.Domain.Interface;
+using System.Threading.Tasks;
+using TestMigration.Models;
+using TestMigration.Domain.core;
 
 namespace TestMigration.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IUserRepository _userRepository;
-        public HomeController(IUserRepository userRepository)
+        private readonly IModuleRepository _moduleRepository;
+        public HomeController(IUserRepository userRepository,IModuleRepository moduleRepository)
         {
             this._userRepository = userRepository;
+            this._moduleRepository = moduleRepository;
         }
-
+        
 
         public ActionResult Index()
         {
             //this._userRepository.LoadUsers(1,2);
             //this._userRepository.LoadInOrgs(System.Guid.NewGuid());
+            return View();
+        }
+
+        public ActionResult ModelElement()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult> ModelElement(ModuleViewModel model)
+        {
+            var module = new Module
+            {
+               CascadeId=model.CascadeId,
+               HotKey=model.HotKey,
+               IconName=model.IconName,
+               IsAutoExpand=model.IsAutoExpand,
+               IsLeaf=model.IsLeaf,
+               Name=model.Name,
+               ParentName=model.ParentName,
+               Status=1,
+               Url=model.Url 
+            };
+            this._moduleRepository.AddUser(module);
             return View();
         }
 
@@ -32,6 +62,7 @@ namespace TestMigration.Controllers
             return View();
         }
 
+        
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

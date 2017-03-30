@@ -54,6 +54,7 @@
     <Compile Include="core\Stock.cs" />
     <Compile Include="core\User.cs" />
     <Compile Include="Interface\IDbContext.cs" />
+    <Compile Include="Interface\IModuleRepository.cs" />
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

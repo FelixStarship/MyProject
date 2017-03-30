@@ -68,6 +68,7 @@
       <DependentUpon>201703280945180_InitCategory.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModuleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestMigrationContext.cs" />
     <Compile Include="UserRepository.cs" />

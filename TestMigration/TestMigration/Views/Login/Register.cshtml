@@ -14,7 +14,7 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-    @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { @class = "form-horizontal" }))
+    @using (Ajax.BeginForm("Register", "Login",new AjaxOptions {HttpMethod="POST",OnSuccess= "onSuccess",OnComplete= "onSuccess" }, new { @class = "form-horizontal" }))
     {
       <div class="form-group">
            <div class="col-xs-3 control-label grey">用户登录账号</div>
@@ -65,3 +65,12 @@
     }
 </body>
 </html>
+<script type="text/javascript">
+
+    function onSuccess()
+    {
+        alert("注册成功!");
+    }
+
+
+</script>

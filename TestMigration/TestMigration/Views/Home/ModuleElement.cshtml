@@ -1,0 +1,82 @@
+﻿@using TestMigration.Models.ModuleViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>添加模块元素</h2>
+
+@using (Html.BeginForm("ModelElement", "Home",FormMethod.Post))
+{
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">节点ID</div>
+        <div class="col-xs-3">
+            @Html.TextBoxFor(t => t.CascadeId, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.ValidationMessageFor(t => t.CascadeId)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">模块名称</div>
+        <div class="col-xs-3">
+            @Html.PasswordFor(t => t.Name, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.ValidationMessageFor(t => t.Name)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">主页URL</div>
+        <div class="col-xs-3">
+            @Html.PasswordFor(t => t.Url, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.ValidationMessageFor(t => t.Url)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">热键</div>
+        <div class="col-xs-3">
+            @Html.TextBoxFor(t => t.HotKey, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.ValidationMessageFor(t => t.HotKey)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">是否叶节点</div>
+        <div class="col-xs-3">
+            <label class="radio-inline">
+                @Html.RadioButtonFor(t => t.IsLeaf, true, new { @checked = "checked" }) 男
+            </label>
+            <label class="radio-inline">
+                @Html.RadioButtonFor(t => t.IsLeaf, false) 女
+            </label>
+            @Html.ValidationMessageFor(t => t.IsLeaf)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">是否自动展开</div>
+        <div class="col-xs-3">
+            <label class="radio-inline">
+                @Html.RadioButtonFor(t => t.IsAutoExpand, true, new { @checked = "checked" }) 男
+            </label>
+            <label class="radio-inline">
+                @Html.RadioButtonFor(t => t.IsAutoExpand, false) 女
+            </label>
+            @Html.ValidationMessageFor(t => t.IsAutoExpand)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">节点图标文件</div>
+        <div class="col-xs-3">
+            @Html.TextBoxFor(t => t.IconName, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.ValidationMessageFor(t => t.IconName)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">父节点名称</div>
+        <div class="col-xs-3">
+            @Html.TextBoxFor(t => t.ParentName, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.ValidationMessageFor(t => t.ParentName)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey"></div>
+        <div class="col-xs-3">
+            <input type="submit" class="btn btn-warning col-xs-12" value="添加模块" />
+        </div>
+    </div>
+}

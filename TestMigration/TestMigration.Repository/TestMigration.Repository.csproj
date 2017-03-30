@@ -59,13 +59,9 @@
     <Compile Include="Mapping\ModuleMap.cs" />
     <Compile Include="Mapping\RoleMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />
-    <Compile Include="Migrations\201703280807441_initial.cs" />
-    <Compile Include="Migrations\201703280807441_initial.Designer.cs">
-      <DependentUpon>201703280807441_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703280945180_InitCategory.cs" />
-    <Compile Include="Migrations\201703280945180_InitCategory.Designer.cs">
-      <DependentUpon>201703280945180_InitCategory.cs</DependentUpon>
+    <Compile Include="Migrations\201703281223541_Init.cs" />
+    <Compile Include="Migrations\201703281223541_Init.Designer.cs">
+      <DependentUpon>201703281223541_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModuleRepository.cs" />
@@ -88,11 +84,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703280807441_initial.resx">
-      <DependentUpon>201703280807441_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703280945180_InitCategory.resx">
-      <DependentUpon>201703280945180_InitCategory.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703281223541_Init.resx">
+      <DependentUpon>201703281223541_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

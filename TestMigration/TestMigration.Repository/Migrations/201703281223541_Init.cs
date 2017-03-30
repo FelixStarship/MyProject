@@ -3,7 +3,7 @@ namespace TestMigration.Repository.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitCategory : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -23,10 +23,16 @@ namespace TestMigration.Repository.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
+            AddColumn("dbo.User", "Null", c => c.String());
+            AlterColumn("dbo.User", "Sex", c => c.Boolean(nullable: false));
+            AlterColumn("dbo.User", "Status", c => c.Boolean(nullable: false));
         }
         
         public override void Down()
         {
+            AlterColumn("dbo.User", "Status", c => c.Int(nullable: false));
+            AlterColumn("dbo.User", "Sex", c => c.Int(nullable: false));
+            DropColumn("dbo.User", "Null");
             DropTable("dbo.Category");
         }
     }

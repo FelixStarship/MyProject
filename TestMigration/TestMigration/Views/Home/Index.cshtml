@@ -6,6 +6,11 @@
 
 @section head{
     @Styles.Render("~/bundles/ztreecss")
+<style type="text/css">
+    .ztree li span.button.add {margin-left:2px; margin-right: -1px; background-position:-144px 0; vertical-align:top; *vertical-align:middle}
+    </style>
+    
+
 }
 
 
@@ -30,6 +35,7 @@
 
 @section Scripts {
 @Scripts.Render("~/bundles/ztreejs")
+<script src="~/Content/artDialog/dist/dialog.js"></script>
 <script type="text/javascript">
 
 
@@ -43,12 +49,15 @@
 
     var setting = {
         view: {
-            selectedMulti: false
+            fontCss: { color: "red" },
+            addHoverDom: addHoverDom,
+            removeHoverDom: removeHoverDom
         },
         edit: {
             enable: true,
-            showRemoveBtn: remove,
-            showRenameBtn: false
+            //editNameSelectAll:true,
+            //showRemoveBtn: showRemoveBtn,
+            //showRenameBtn: showRenameBtn  
         },
         data: {
             keep: {
@@ -60,13 +69,60 @@
             }
         },
         callback: {
-            beforeRemove: beforeRemove,
-            onRemove: onRemove,
-            beforeClick: beforeClick,
-            onClick: onClick
+            onClick: zTreeOnClick
         }
     };
     
+    function zTreeOnClick(event, treeId, treeNode) {
+        //alert(treeNode.tId + ", " + treeNode.name);
+        //var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+        //var newNodes = [{ name: "newNode1" }, { name: "newNode2" }, { name: "newNode3" }];
+        //newNodes = treeObj.addNodes(null, newNodes);
+        //location.href = treeNode.url;
+        alert(0);
+    };
+    var newCount = 1;
+    function addHoverDom(treeId, treeNode) {
+        var sObj = $("#" + treeNode.tId + "_span");
+        if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0) return;
+        var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+			+ "' title='添加子节点' onfocus='this.blur();'></span>";
+        sObj.after(addStr);
+        var btn = $("#addBtn_" + treeNode.tId);
+        if (btn) btn.bind("click", function () {
+            //在这里向后台发送请求保存一个新建的叶子节点，父id为treeNode.id,让后将下面的100+newCount换成返回的id
+            //zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, name:"新建节点" + (newCount++)});
+            //var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+            //var sNodes = treeObj.getSelectedNodes();
+            //if (sNodes.length > 0) {
+            //    var node = sNodes[0].getParentNode();
+            //}
+            
+            var parentNode = treeNode.getParentNode();   //获取当前节点的父节点
+            var pId = 0;
+            if (parentNode != null) {
+                pId = parentNode.id;
+            }
+
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            
+            zTree.addNodes(parentNode, { 'id': (100 + newCount), 'pId': pId, 'name': '新建同级节点', 'isParent': true });
+            zTree.addNodes(treeNode, { id: (100 + newCount), pId: treeNode.id, name: "新建子节点" + (newCount++), url: "http://www.baidu.com" });
+            
+
+           });         
+        }
+          
+    
+    function removeHoverDom(treeId, treeNode) {
+        $("#addBtn_" + treeNode.tId).unbind().remove();
+    }
+
+    
+
+
+
+
 
 
     function setzNodes(data) {

@@ -18,6 +18,8 @@ namespace TestMigration
                       "~/Content/ztree/js/jquery.ztree.excheck.js",
                       "~/Content/ztree/js/jquery.ztree.exedit.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/artDialogjs").Include(
+                      "~/Content/artDialog/src/dialog.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -40,6 +42,10 @@ namespace TestMigration
 
             bundles.Add(new StyleBundle("~/bundles/ztreecss").Include(
                       "~/Content/ztree/css/zTreeStyle/zTreeStyle.css"));
-        }
-    }
+
+
+            bundles.Add(new StyleBundle("~/bundles/artDialogcss").Include(
+                      "~/Content/artDialog/css/dialog.css"));
+        }//C:\Users\Administrator\Source\Repos\MyProject\TestMigration\TestMigration\Content\artDialog\css\dialog.css
+    }//C:\Users\Administrator\Source\Repos\MyProject\TestMigration\TestMigration\Content\artDialog\src\dialog.js
 }//C:\Users\ayong\Source\Repos\MyProject\TestMigration\TestMigration\Content\ztree\css\zTreeStyle\zTreeStyle.css

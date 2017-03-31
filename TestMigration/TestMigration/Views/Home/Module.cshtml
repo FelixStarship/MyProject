@@ -1,7 +1,56 @@
-﻿
+﻿@model TestMigration.Models.ModuleElementViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Module</h2>
+<h2>添加模块元素</h2>
 
+@using (Html.BeginForm("Module", "Home", FormMethod.Post))
+{
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">模块元素名称</div>
+        <div class="col-xs-3">
+            @Html.TextBoxFor(t => t.Name, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.ValidationMessageFor(t => t.Name)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">元素附加属性</div>
+        <div class="col-xs-3">
+            @Html.TextBoxFor(t => t.Attr, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.ValidationMessageFor(t => t.Attr)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">元素调度脚本</div>
+        <div class="col-xs-3">
+            @Html.TextBoxFor(t => t.Script, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.ValidationMessageFor(t => t.Script)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">元素调度脚本</div>
+        <div class="col-xs-3">
+            @Html.DropDownList("ModuleId",(IEnumerable<SelectListItem>)ViewBag.ModuleName, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.ValidationMessageFor(t => t.ModuleId)
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey">备注</div>
+        <div class="col-xs-3">
+            @Html.TextAreaFor(t => t.Remark, new { @class = "form-control", placeholder = "", autocomplete = "off" })
+            @Html.ValidationMessageFor(t => t.Remark)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-xs-3 control-label grey"></div>
+        <div class="col-xs-3">
+            <input type="submit" class="btn btn-warning col-xs-12" value="添加模块" />
+        </div>
+    </div>
+}

@@ -7,7 +7,7 @@ using TestMigration.Domain.core;
 using TestMigration.Domain.Interface;
 using System.Linq.Expressions;
 using System.Data.Entity;
-
+using TestMigration.Domain;
 
 namespace TestMigration.Repository
 {
@@ -42,6 +42,21 @@ namespace TestMigration.Repository
                 }
             }
             return result.ToListAsync();
+        }
+
+        public async Task<ResultJson> InsertModule(ModuleElement module)
+        {   
+            ResultJson msg = new ResultJson();
+            try
+            {
+                var entity = this._dbContext.Set<ModuleElement>().Add(module);
+                var result= await this._dbContext.SaveChangeAsync();
+            }
+            catch (Exception ex)
+            {
+                msg.Message = ex.Message;
+            }
+            return msg;
         }
     }
 }

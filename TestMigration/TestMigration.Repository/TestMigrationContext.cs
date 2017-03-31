@@ -63,5 +63,10 @@ namespace TestMigration.Repository
         {
             return base.Set<TEntity>();
         }
+
+        public async new Task<bool> SaveChangeAsync()
+        {
+           return await  base.SaveChangesAsync()>0;
+        }
     }
 }

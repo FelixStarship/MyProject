@@ -15,5 +15,8 @@ namespace TestMigration.Domain.Interface
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
 
         int SaveChanges();
+
+        Task<bool> SaveChangeAsync();
+        
     }
 }

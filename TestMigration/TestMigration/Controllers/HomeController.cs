@@ -9,11 +9,19 @@ using TestMigration.Domain.Interface;
 using System.Threading.Tasks;
 using TestMigration.Models;
 using TestMigration.Domain.core;
+using System.Linq.Expressions;
 
 namespace TestMigration.Controllers
-{
+{   
+
+
+
+
+
+    //Add-Migration GoodsInfoImage -ConfigurationTypeName Configuration
+    //Update-Database -Verbose -ConfigurationTypeName Configuration
     public class HomeController : Controller
-    {
+    {   
         private readonly IUserRepository _userRepository;
         private readonly IModuleRepository _moduleRepository;
         public HomeController(IUserRepository userRepository,IModuleRepository moduleRepository)
@@ -70,19 +78,74 @@ namespace TestMigration.Controllers
         {
             var module = new Module
             {
-               CascadeId=model.CascadeId,
-               HotKey=model.HotKey,
-               IconName=model.IconName,
-               IsAutoExpand=model.IsAutoExpand,
-               IsLeaf=model.IsLeaf,
-               Name=model.Name,
-               ParentName=model.ParentName,
-               Status=1,
-               Url=model.Url 
+                CascadeId = model.CascadeId,
+                HotKey = model.HotKey,
+                IconName = model.IconName,
+                IsAutoExpand = model.IsAutoExpand,
+                IsLeaf = model.IsLeaf,
+                Name = model.Name,
+                ParentName = model.ParentName,
+                Status = 1,
+                Url = model.Url,
             };
             this._moduleRepository.AddUser(module);
             return View();
         }
+
+        public async Task<ActionResult> Module()
+        {
+            List<SelectListItem> MyList = new List<SelectListItem>();
+            var moduleName =await this._moduleRepository.GetEntityListAsync<Module>(null);
+            foreach (var item in moduleName)
+            {
+                var select = new SelectListItem();
+                select.Text = item.Name;
+                select.Value = item.Id.ToString();
+                MyList.Add(select);
+            }
+            ViewBag.ModuleName = MyList;
+
+
+            //调用
+            ModuleInclude();
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> Module(ModuleElementViewModel model)
+        {
+            var module = new ModuleElement
+            {
+                Attr = model.Attr,
+                ModuleId = model.ModuleId,
+               Remark=model.Remark,
+               Name=model.Name,
+               Script=model.Script
+            };
+            List<SelectListItem> MyList = new List<SelectListItem>();
+            var moduleName = await this._moduleRepository.GetEntityListAsync<Module>(null);
+            foreach (var item in moduleName)
+            {
+                var select = new SelectListItem();
+                select.Text = item.Name;
+                select.Value = item.Id.ToString();
+                MyList.Add(select);
+            }
+            ViewBag.ModuleName = MyList;
+
+            var result=await this._moduleRepository.InsertModule(module);
+
+
+
+            return View();
+        }
+
+        public async void ModuleInclude()
+        {
+            List<Expression<Func<Module, object>>> propModuleElementSelector = new List<Expression<Func<Module, object>>>();
+            propModuleElementSelector.Add(t => t.ModuleElement);  //需要Include的表
+            var module = await this._moduleRepository.GetEntityListAsync(null, propModuleElementSelector);
+        }
+
 
         public ActionResult About()
         {

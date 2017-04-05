@@ -82,7 +82,23 @@ namespace TestMigration.Controllers
             this.HttpContext.Response.Cookies.Add(cookie);
             this.HttpContext.Response.Cookies.Add(userNameCookie);
         }
+        /// <summary>
+        /// 存储用户公共信息
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <returns></returns>
+        public virtual User GetAuthenticatedCustomerFromTicket(System.Web.Security.FormsAuthenticationTicket ticket)
+        {
+            if (ticket == null)
+                throw new ArgumentNullException("ticket");
+            var usernameLoginAccount = ticket.UserData;
+            if (string.IsNullOrWhiteSpace(usernameLoginAccount))
+                return null;
+            var user = this._userRepository.FindUser(t => t.Account == usernameLoginAccount);
+            return user;
+        }
 
+        
 
         public virtual void SignOut()
         {

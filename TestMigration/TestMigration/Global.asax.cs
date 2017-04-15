@@ -8,6 +8,7 @@ using System.Web.Routing;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using TestMigration.Repository;
+using TestMigration.AutoMapper;
 
 namespace TestMigration
 {
@@ -26,7 +27,7 @@ namespace TestMigration
             //{
             //    //context.Database.Initialize(true);
             //}
-
+            AutoMapperStartupTask.Configure();
         }
     }
 }

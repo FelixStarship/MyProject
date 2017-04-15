@@ -58,5 +58,27 @@ namespace TestMigration.Repository
             }
             return msg;
         }
+
+        public Task<TResult> GetSinglePropertyAsync<T, TResult>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, TResult>> propSelect) where T : class
+        {
+            var result = this._dbContext.Set<T>().Where(whereLambda).Select(propSelect).OrderBy(c => c).FirstOrDefaultAsync();
+            return result;
+        }
+
+        public Task<TResult> FindEntityAsync<TResult>(Expression<Func<TResult, bool>> whereLambda, List<Expression<Func<TResult, object>>> propSelect = null, bool asNoTracking = true) where TResult : class
+        {
+            var query = this._dbContext.Set<TResult>().Where(whereLambda);
+            if (asNoTracking)
+                query = query.AsNoTracking();
+            if (propSelect != null && propSelect.Count > 0)
+            {
+                foreach (var prop in propSelect)
+                {
+                    var func = prop;
+                    query = query.Include(func);
+                }
+            }
+            return query.FirstOrDefaultAsync();
+        }
     }
 }

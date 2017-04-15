@@ -4,12 +4,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TestMigration.Repository;
 using TestMigration.Domain.Interface;
 using System.Threading.Tasks;
 using TestMigration.Models;
 using TestMigration.Domain.core;
 using System.Linq.Expressions;
+using TestMigration.AutoMapper;
 
 namespace TestMigration.Controllers
 {   
@@ -107,7 +107,7 @@ namespace TestMigration.Controllers
 
 
             //调用
-            ModuleInclude();
+            await ModuleInclude();
             return View();
         }
         [HttpPost]
@@ -134,16 +134,17 @@ namespace TestMigration.Controllers
 
             var result=await this._moduleRepository.InsertModule(module);
 
-
-
+            var entity = await this._moduleRepository.FindEntityAsync<Module>(t => t.Id == 1);
+            var entities = entity.ToModel();
             return View();
         }
 
-        public async void ModuleInclude()
+        public async Task ModuleInclude()
         {
             List<Expression<Func<Module, object>>> propModuleElementSelector = new List<Expression<Func<Module, object>>>();
             propModuleElementSelector.Add(t => t.ModuleElement);  //需要Include的表
             var module = await this._moduleRepository.GetEntityListAsync(null, propModuleElementSelector);
+            
         }
 
 

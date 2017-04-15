@@ -20,5 +20,23 @@ namespace TestMigration.Domain.Interface
         /// <param name="module"></param>
         /// <returns></returns>
         Task<ResultJson> InsertModule(ModuleElement module);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="whereLambda"></param>
+        /// <param name="propSelect"></param>
+        /// <returns></returns>
+        Task<TResult> GetSinglePropertyAsync<T, TResult>(Expression<Func<T, bool>> whereLambda, Expression<Func<T, TResult>> propSelect) where T : class;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="whereLambda"></param>
+        /// <param name="propSelect"></param>
+        /// <param name="asNoTracking"></param>
+        /// <returns></returns>
+        Task<TResult> FindEntityAsync<TResult>(Expression<Func<TResult, bool>> whereLambda, List<Expression<Func<TResult, object>>> propSelect = null, bool asNoTracking = true) where TResult : class;
     }
 }

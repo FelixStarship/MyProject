@@ -15,6 +15,7 @@ namespace TestMigration.Repository.Mapping
             //ToTable("Module");
             this.HasKey(t => t.Id);
             this.HasMany(t => t.ModuleElement).WithRequired().HasForeignKey(t =>t.ModuleId);   //主键表配置导航属性
+            this.HasOptional(t => t.ParentModule).WithMany(t => t.ChildModule).HasForeignKey(t => t.ParentId).WillCascadeOnDelete(false);
         }
     }
 }

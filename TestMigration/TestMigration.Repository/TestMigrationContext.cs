@@ -51,6 +51,9 @@ namespace TestMigration.Repository
             modelBuilder.Configurations.Add(new ModuleMap());
             modelBuilder.Configurations.Add(new ModuleElementMap());
             modelBuilder.Configurations.Add(new CategoryMap());
+            modelBuilder.Configurations.Add(new OrderMap());
+            modelBuilder.Configurations.Add(new EmployeeMap());
+            modelBuilder.Configurations.Add(new TestPageMap());
             base.OnModelCreating(modelBuilder);
         }
 

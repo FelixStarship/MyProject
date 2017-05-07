@@ -16,7 +16,7 @@ using EntityFramework.Extensions;
 
 namespace TestMigration.Repository
 {
-    public class BaseRepository<T>:IRepository<T> where T:Entity
+    public class BaseRepository<T>:IRepository<T> where T:class
     {
         // protected TestMigrationContext Context = new TestMigrationContext();
         private readonly IDbContext _context;    

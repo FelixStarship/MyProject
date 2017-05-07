@@ -24,11 +24,9 @@ namespace TestMigration
             builder.RegisterGeneric(typeof(BaseRepository<>)).As(typeof(IRepository<>));
             builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ModuleRepository>().As<IModuleRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<TestRepository>().As<ITestPageRepository>().InstancePerLifetimeScope();
+
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
-
-            
-            
-
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }

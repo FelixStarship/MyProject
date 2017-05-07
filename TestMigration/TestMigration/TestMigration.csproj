@@ -56,8 +56,9 @@
       <HintPath>..\packages\Autofac.Engine.3.0.2\lib\net4.5.2\Autofac.Engine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Autofac.Integration.Mvc">
-      <HintPath>..\..\..\WebApplication_AutoFac\packages\Autofac.Mvc5.4.0.1\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
@@ -112,6 +113,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -195,7 +197,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Member\Controllers\OrderController.cs" />
     <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
+    <Compile Include="Areas\MvcAppPager\Controllers\TestPageController.cs" />
+    <Compile Include="Areas\MvcAppPager\MvcAppPagerAreaRegistration.cs" />
     <Compile Include="AutofacExt.cs" />
     <Compile Include="AutoMapper\AutoMapperStartupTask.cs" />
     <Compile Include="AutoMapper\MappingExtensions.cs" />
@@ -204,6 +209,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ExtHelper.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ModuleElementViewModel.cs" />
     <Compile Include="Models\ModuleViewModel.cs" />
@@ -213,6 +219,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\page.css" />
     <Content Include="Content\ztree\css\awesomeStyle\awesome.css" />
     <Content Include="Content\ztree\css\awesomeStyle\img\loading.gif" />
     <Content Include="Content\ztree\css\demo.css" />
@@ -257,6 +264,10 @@
     <Content Include="Content\ztree\css\awesomeStyle\awesome.less" />
     <Content Include="Content\ztree\css\awesomeStyle\fa.less" />
     <Content Include="Areas\Member\Views\web.config" />
+    <Content Include="Areas\Member\Views\Order\Index.cshtml" />
+    <Content Include="Areas\MvcAppPager\Views\web.config" />
+    <Content Include="Areas\MvcAppPager\Views\TestPage\Index.cshtml" />
+    <Content Include="Areas\MvcAppPager\Views\Shared\Page.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -291,9 +302,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Member\Controllers\" />
     <Folder Include="Areas\Member\Models\" />
     <Folder Include="Areas\Member\Views\Shared\" />
+    <Folder Include="Areas\MvcAppPager\Models\" />
     <Folder Include="Filter\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Manage\" />

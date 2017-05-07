@@ -59,10 +59,18 @@ namespace TestMigration.Domain.core
         /// <summary>
         /// 父节点流水号
         /// </summary>
-        public string ParentId { get; set; }
+        public int? ParentId { get; set; }
         /// <summary>
         /// 模块元素表（需要权限控制的按钮）
         /// </summary>
         public virtual List<ModuleElement> ModuleElement { get; set; }
+        /// <summary>
+        /// 一个子模块元素对应一个父模块元素
+        /// </summary>
+        public virtual Module ParentModule{ get; set; }
+        /// <summary>
+        /// 一个模块元素对应多个子模块元素
+        /// </summary>
+        public virtual ICollection<Module> ChildModule { get; set; }
     }
 }

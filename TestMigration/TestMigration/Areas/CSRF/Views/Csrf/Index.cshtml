@@ -1,0 +1,46 @@
+﻿@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model TestMigration.Models.OrderViewModel
+<div class="form-horizontal">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <div>测试CSRF攻击</div>
+        <div class="col-md-10">
+            @Html.TextBoxFor(t=>t.OrderTitle, new { @class= "form-control" })
+            @Html.ValidationMessageFor(t=>t.OrderTitle,"",new { @class= "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" id="save" value="提交" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+@section scripts
+{  
+   <script type="text/javascript">
+       $(function () {
+           var hreders = {};
+           hreders["__RequestVerificationToken"] = $("input[name='__RequestVerificationToken']").val();
+           $("#save").click(function () {
+               $.ajax({
+                   type:"post",
+                   url:"@Url.Action("SaveCsrf", "Csrf")",
+                   cache: false,
+                   //headers: hreders,
+                   data: { orderTitle: $("#OrderTitle").val(),__RequestVerificationToken:$("input[name='__RequestVerificationToken']").val() },
+                   success: function (msg)
+                   {
+                       alert("000");
+                   },
+                   error: function (text)
+                   {
+                       //alert(text.responseText);
+                   }
+               });
+           });
+       });
+    </script>
+}
+

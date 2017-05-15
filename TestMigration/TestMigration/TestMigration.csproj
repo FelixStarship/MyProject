@@ -197,6 +197,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\CSRF\Controllers\CsrfController.cs" />
+    <Compile Include="Areas\CSRF\CSRFAreaRegistration.cs" />
     <Compile Include="Areas\Member\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Member\Controllers\OrderController.cs" />
     <Compile Include="Areas\Member\Controllers\OutputCacheController.cs" />
@@ -215,6 +217,8 @@
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ModuleElementViewModel.cs" />
     <Compile Include="Models\ModuleViewModel.cs" />
+    <Compile Include="Models\MyValidateAntiForgeryToken.cs" />
+    <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -272,6 +276,8 @@
     <Content Include="Areas\MvcAppPager\Views\Shared\Page.cshtml" />
     <Content Include="Areas\Member\Views\Customer\CustomerList.cshtml" />
     <Content Include="Areas\Member\Views\OutputCache\Index.cshtml" />
+    <Content Include="Areas\CSRF\Views\web.config" />
+    <Content Include="Areas\CSRF\Views\Csrf\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -306,6 +312,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\CSRF\Models\" />
+    <Folder Include="Areas\CSRF\Views\Shared\" />
     <Folder Include="Areas\Member\Models\" />
     <Folder Include="Areas\Member\Views\Shared\" />
     <Folder Include="Areas\MvcAppPager\Models\" />

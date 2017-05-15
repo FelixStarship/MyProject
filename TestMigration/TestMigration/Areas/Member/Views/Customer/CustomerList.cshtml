@@ -1,0 +1,51 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CustomerList</title>
+    @Scripts.Render("~/Scripts/jquery-1.10.2.js")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+</head>
+<body>
+    <div>
+       @Ajax.ActionLink("ajax<a>", "CustomerList",new AjaxOptions{
+             UpdateTargetId ="divMsg",
+             InsertionMode =InsertionMode.Replace,
+             HttpMethod ="Get",
+             OnSuccess ="ajaxFinish"
+        })
+        <div id="divMsg"></div>
+        <table id="tbList">
+            <thead>
+                <tr>
+                  <th>账号：</th>
+                  <th>昵称：</th>
+                  <th>密码：</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <script type="text/javascript">
+            
+            function ajaxFinish(data)
+            {
+                alert(JSON.stringify(data));
+                    //$.get("/Customer/CustomerList", {}, function (data) {
+                    //    alert(JSON.stringify(data));
+                    //});
+             }
+                
+            
+        </script>
+    </div>
+
+</body>
+</html>

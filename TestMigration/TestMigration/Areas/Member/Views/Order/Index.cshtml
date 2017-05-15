@@ -9,11 +9,38 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    @Scripts.Render("~/Scripts/jquery-1.10.2.js")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
 </head>
+
 <body>
     <div> 
+        @using (Ajax.BeginForm("BaseInfo", "Order", new AjaxOptions
+        {
+            UpdateTargetId = "msgDiv",
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "post",
+            OnFailure = "fail",
+            OnSuccess = "success",
+            LoadingElementId = "lodeingmsg"
+        }))
+        {
+            <input type="text" name="txtName" />
+            <input type="submit" value="提交查询" />
+        }
+        <div id="lodeingmsg" style="display:none">加载中。。。。</div>
+        <div id="msgDiv"></div>
+        <script type="text/javascript">
 
-
+            function fail(txt)
+            {
+                alert("查询失败，失败信息："+txt.responseText);
+            }
+            function success(txt)
+            {
+                alert("查询成功，查询信息："+txt);
+            }
+        </script>
     </div>
 </body>
 </html>

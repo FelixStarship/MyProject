@@ -13,6 +13,7 @@ using System.IO;
 using System.Text;
 using System.Runtime.Serialization.Json;
 
+
 namespace TestMigration.Areas.Member.Controllers
 {
     public class OrderController : Controller
@@ -114,14 +115,18 @@ namespace TestMigration.Areas.Member.Controllers
                 DataContractJsonSerializer dcj = new DataContractJsonSerializer(typeof(T));
                 return (T)dcj.ReadObject(ms);
             }
+            
         }
 
-
-    
-        
-        
-
-
+        public ActionResult AjaxForm()
+        {
+            return View("Index");
+        }
+        public ActionResult BaseInfo(string txtname)
+        {
+            var result = this._userRepository.FindUser(t => t.Account == txtname);
+            return Content("账号："+result.Account+"昵称："+result.Name);
+        }
     }
     public class Class1
     {

@@ -197,7 +197,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Member\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Member\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Member\Controllers\OutputCacheController.cs" />
     <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
     <Compile Include="Areas\MvcAppPager\Controllers\TestPageController.cs" />
     <Compile Include="Areas\MvcAppPager\MvcAppPagerAreaRegistration.cs" />
@@ -268,6 +270,8 @@
     <Content Include="Areas\MvcAppPager\Views\web.config" />
     <Content Include="Areas\MvcAppPager\Views\TestPage\Index.cshtml" />
     <Content Include="Areas\MvcAppPager\Views\Shared\Page.cshtml" />
+    <Content Include="Areas\Member\Views\Customer\CustomerList.cshtml" />
+    <Content Include="Areas\Member\Views\OutputCache\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -13,6 +13,16 @@ namespace Infrastructure
     public static class DynamicQueryable
     {
 
+
+
+
+
+
+
+
+
+
+
     
             public static IQueryable<T> Where<T>(this IQueryable<T> source, string predicate, params object[] values)
             {

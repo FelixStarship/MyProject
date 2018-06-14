@@ -8,6 +8,9 @@ namespace TestMigration.Domain
 {
    public class ResultJson
     {
+
+
+
         /// <summary>
         /// 设置默认初始值
         /// Result:默认false
